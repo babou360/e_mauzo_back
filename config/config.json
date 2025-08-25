@@ -1,0 +1,32 @@
+{
+  "development": {
+    "username": "neondb_owner",
+    "password": "npg_aJ1uGtVCpX5d",
+    "database": "e_mauzo",
+    "host": "ep-empty-flower-a8oerdkq-pooler.eastus2.azure.neon.tech",
+    "dialect": "postgres",
+    "port": 5432,
+    "logging": false,
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  },
+  "test": {
+    "username": "postgres",
+    "password": "123456",
+    "database": "e_mauzo",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
