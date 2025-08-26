@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const { MailerSend, EmailParams, Sender, Recipient } = require("mailersend");
@@ -8,7 +9,7 @@ router.post("/send_otp", async (req, res) => {
 
   try {
     const mailerSend = new MailerSend({
-      apiKey: "mlsn.7ee9eda4a986d89a841840cbd172c5ea0f439e8319bc3ebe62839934118b01bc", // never commit this in production!
+      apiKey: process.env.MAILER_SEND_API_KEY
     });
 
     // ✅ Use a valid email address that you verified in MailerSend
