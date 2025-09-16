@@ -109,54 +109,6 @@ router.post('/sale', authMiddleware, async (req, res) => {
   }
 })
 
-// get sales
-// router.get('/get_sales', async (req, res) => {
-//   const page = parseInt(req.query.page) || 1;
-//   const pageSize = parseInt(req.query.pageSize) || 10;
-//   const offset = (page - 1) * pageSize;
-//   const business_id = req.query.business_id;
-//   const seller_id = req.query.seller_id;
-
-//   try {
-//     const sales = await Sales.findAndCountAll({
-//       offset,
-//       limit: pageSize,
-//       order: [['id', 'DESC']],
-//       where: {
-//         business_id: business_id
-//       }
-//     });
-
-//     const result = await Promise.all(
-//       sales.rows.map(async (item) => {
-//         const user = await User.findOne({
-//           where: {
-//             phone: item.seller_id   // or fix this condition as needed
-//           }
-//         });
-//         return {
-//           business_id: item.business_id,
-//           buyer_id: item.buyer_id,
-//           createdAt: item.createdAt,
-//           discount: item.discount,
-//           id: item.id,
-//           products: item.products,
-//           seller_id: user ? user.name : null, // or other relevant field
-//           total_price: item.total_price
-//         };
-//       })
-//     );
-
-//     res.json({
-//       count: sales.count,
-//       rows: result
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: error.toString() });
-//   }
-// });
-
 router.get('/get_sales', async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const pageSize = parseInt(req.query.pageSize) || 10;

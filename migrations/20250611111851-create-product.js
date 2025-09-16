@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      attendant_id: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -17,8 +21,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      image: {
-        type: Sequelize.STRING,
+      images: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: true
       },
       quantity: {
@@ -37,8 +41,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      measurement: {
+      sub_category: {
         type: Sequelize.STRING,
+        allowNull: true
+      },
+      measurement: {
+        type: Sequelize.JSON,
         allowNull: false
       },
       description: {
@@ -59,6 +67,67 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
         default: 0
+      },
+      size: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      color: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        default: "active"
+      },
+      condition: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      min_stock: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      business_type: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      ingridients: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
+        allowNull: true,
+      },
+      is_alcohol: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+      },
+      brand: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      material: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      dosage: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      pack_size: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      animal_type: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      extra_attributes: {
+        type: Sequelize.JSON,
+        allowNull: true,
+      },
+      expire_date: {
+        type: Sequelize.DATE,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,

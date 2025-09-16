@@ -54,6 +54,19 @@ module.exports = {
         allowNull: true,
         default: "active"
       },
+      phone: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      pricing_category: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        default: "basic"
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

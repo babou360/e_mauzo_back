@@ -1,0 +1,203 @@
+{
+  "project_info": {
+    "project_number": "730511684926",
+    "project_id": "pregnancy-f6ebe",
+    "storage_bucket": "pregnancy-f6ebe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730511684926:android:6edc9364640b254daae86f",
+        "android_client_info": {
+          "package_name": "com.babou360.payment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730511684926-qh9caggfm4vpuboh456i6pm9sg04epfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq-kAx4Q6PB278-fThtnU6PycQ9701xNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730511684926-qh9caggfm4vpuboh456i6pm9sg04epfa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730511684926:android:c6b98df332619e08aae86f",
+        "android_client_info": {
+          "package_name": "com.babou360.pregnancy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730511684926-48imhn9rjpd3f7lcretedgnlv5pf0ace.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.babou360.pregnancy",
+            "certificate_hash": "1126e92ef934d6809a281490c7c4e7305a990c29"
+          }
+        },
+        {
+          "client_id": "730511684926-4bpo3qp0nkour5c5g2jccbo43pqckvni.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.babou360.pregnancy",
+            "certificate_hash": "1aab6007b2ddb98648f62ed1d24e2142d646c0ba"
+          }
+        },
+        {
+          "client_id": "730511684926-55b2h0ssdbpin3qmqkjmp14qasieesfh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.babou360.pregnancy",
+            "certificate_hash": "9bd04331ea57466f535c04201afe3598f016e3a2"
+          }
+        },
+        {
+          "client_id": "730511684926-rf3j4voqgef4f33tffstpthp8s7bgjrv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.babou360.pregnancy",
+            "certificate_hash": "bb39a8f06be5b951fdba8668b03fcc69dc70086a"
+          }
+        },
+        {
+          "client_id": "730511684926-t34gq9pd162ksb6g4n7l3cnrpoh30pnn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.babou360.pregnancy",
+            "certificate_hash": "05d6f09fbd1fea7498b57792c2bd4ed1d514d1b6"
+          }
+        },
+        {
+          "client_id": "730511684926-qh9caggfm4vpuboh456i6pm9sg04epfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq-kAx4Q6PB278-fThtnU6PycQ9701xNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730511684926-qh9caggfm4vpuboh456i6pm9sg04epfa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730511684926:android:e06d6cc0f46dedb5aae86f",
+        "android_client_info": {
+          "package_name": "com.example.mama_k_app_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730511684926-i24unt1s3mnri4761peha31la3kadnti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mama_k_app_admin",
+            "certificate_hash": "1aab6007b2ddb98648f62ed1d24e2142d646c0ba"
+          }
+        },
+        {
+          "client_id": "730511684926-qh9caggfm4vpuboh456i6pm9sg04epfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq-kAx4Q6PB278-fThtnU6PycQ9701xNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730511684926-qh9caggfm4vpuboh456i6pm9sg04epfa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730511684926:android:9e24fdfbe4afa295aae86f",
+        "android_client_info": {
+          "package_name": "com.example.mamak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730511684926-qh9caggfm4vpuboh456i6pm9sg04epfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq-kAx4Q6PB278-fThtnU6PycQ9701xNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730511684926-qh9caggfm4vpuboh456i6pm9sg04epfa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730511684926:android:29b398ab50177284aae86f",
+        "android_client_info": {
+          "package_name": "com.example.payment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730511684926-qh9caggfm4vpuboh456i6pm9sg04epfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq-kAx4Q6PB278-fThtnU6PycQ9701xNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730511684926-qh9caggfm4vpuboh456i6pm9sg04epfa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

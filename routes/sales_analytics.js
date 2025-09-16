@@ -279,8 +279,41 @@ router.get('/sales_analytics', async (req, res) => {
             daily_sales: daysResult
         });
     } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: "internal server error" });
+    }
+});
+
+// get all sales
+router.get('/get_all_sales', async (req, res) => {
+    const { business_id, duration = 'week', seller_id, start_date, end_date,limit } = req.query;
+    try {
+        const whereClause = { business_id };
+        
+        // Only add seller_id to where clause if it's provided and not empty, unless duration is 'all'
+        //if (seller_id && duration.toLowerCase() !== 'all') {
+        if (seller_id && seller_id !== 'all') {
+            whereClause.seller_id = seller_id;
+        }
+
+        // Get date range based on duration
+        const { start, end } = getDateRange(duration, start_date, end_date);
+        console.log(start,end)
+        
+        // Add date range to where clause unless duration is 'all'
+        if (duration.toLowerCase() !== 'all') {
+            whereClause.createdAt = {
+                [Op.between]: [start, end]
+            };
+        }
+
+        const sales = await Sales.findAll({
+            where: whereClause,
+            limit: limit||10
+        });
+
+        res.json(sales);
+    } catch (error) {
+        res.status(500).json({ error: error.message || "Internal server error" });
     }
 });
 

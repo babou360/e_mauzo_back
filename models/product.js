@@ -14,7 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Product.init({
-    name: {
+    attendant_id: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      name: {
         type: DataTypes.STRING,
         allowNull: false
       },
@@ -22,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      image: {
-        type: DataTypes.STRING,
+      images: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true
       },
       quantity: {
@@ -42,8 +46,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      measurement: {
+      sub_category: {
         type: DataTypes.STRING,
+        allowNull: true
+      },
+      measurement: {
+        type: DataTypes.JSON,
         allowNull: false
       },
       description: {
@@ -53,17 +61,78 @@ module.exports = (sequelize, DataTypes) => {
       new_selling_price: {
         type: DataTypes.FLOAT,
         allowNull: true,
-        default: 0.0
+        defaultValue: 0.0
       },
       new_buying_price: {
         type: DataTypes.FLOAT,
         allowNull: true,
-        default: 0.0
+        defaultValue: 0.0
       },
       new_quantity: {
         type: DataTypes.INTEGER,
         allowNull: true,
-        default: 0
+        defaultValue: 0
+      },
+      size: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      color: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      status: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "active"
+      },
+      condition: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      min_stock: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      business_type: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      ingridients: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true,
+      },
+      is_alcohol: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+      },
+      brand: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      material: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      dosage: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      pack_size: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      animal_type: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      extra_attributes: {
+        type: DataTypes.JSON,
+        allowNull: true,
+      },
+      expire_date: {
+        type: DataTypes.DATE,
+        allowNull: true,
       },
   }, {
     sequelize,

@@ -59,6 +59,19 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: "active"
       },
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      pricing_category: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "basic"
+      },
   }, {
     sequelize,
     modelName: 'Business',

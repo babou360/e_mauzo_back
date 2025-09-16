@@ -3,6 +3,7 @@ const router = express.Router()
 const { Product,Stock } = require('../models/index')
 const { Op } = require('sequelize')
 const authMiddleware = require('../utils/authMiddleware')
+const { uploadFiles } = require("./uploadService");
 
 
 async function createStock (user_id,quantity,selling_price,buying_price,name){
@@ -15,9 +16,10 @@ await Stock.create({
 })
 }
 
-router.post('/create_product', async (req, res) => {
-    const { name, image, quantity, selling_price, buying_price, category, measurement, description, business_id } = req.body
-    //console.log(req.body)
+router.post('/create_product',authMiddleware, async (req, res) => {
+    const { name, images, quantity, selling_price, buying_price, category, measurement, description, business_id, min_stock,business_type,brand,pack_size,expire_date } = req.body
+    const user = req.user
+    console.log(req.body)
     try {
         if (!name || name.trim() === "") {
             return res.status(400).json({ error: "Product name is required" });
@@ -31,12 +33,29 @@ router.post('/create_product', async (req, res) => {
             return res.status(400).json({ error: "Buying price must be a valid number" });
         } else if (!category || category.trim() === "") {
             return res.status(400).json({ error: "Category is required" });
-        } else if (!measurement || measurement.trim() === "") {
+        } else if (!measurement || measurement.keys?.length === 0) {
             return res.status(400).json({ error: "Measurement is required" });
         } else if (!business_id) {
             return res.status(400).json({ error: "Business ID is required" });
         } else {
-            const product = await Product.create(req.body)
+            const urls = await uploadFiles(images);
+            const product = await Product.create({
+                attendant_id: user.phone,
+                name,
+                business_id,
+                images: urls,
+                quantity,
+                selling_price,
+                buying_price,
+                category,
+                measurement,
+                description,
+                min_stock,
+                business_type,
+                brand,
+                pack_size,
+                expire_date
+            })
             res.json(product)
         }
     } catch (error) {
@@ -116,7 +135,11 @@ router.get('/get_products', async (req, res) => {
             order: [['id', 'ASC']],
             ...(Object.keys(whereClause).length && { where: whereClause })
         })
-        const all = await Product.findAll()
+        const all = await Product.findAll({
+            where: {
+                business_id
+            }
+        })
         res.json({
             data: curr.rows,
             all: all,
