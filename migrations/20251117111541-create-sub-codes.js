@@ -2,32 +2,28 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('ms_cats', {
+    await queryInterface.createTable('subcodes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      swahili: {
+      amount: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      code: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      message: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
       },
-      english: {
+      phone: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      value: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      examples_swahili: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
-        allowNull: false
-      },
-      examples_english: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
@@ -40,6 +36,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('ms_cats');
+    await queryInterface.dropTable('subcodes');
   }
 };

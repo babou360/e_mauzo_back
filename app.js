@@ -13,6 +13,9 @@ const attendant = require('./routes/attendant/attendant')
 const upload = require('./routes/upload')
 const damages = require('./routes/damage')
 const suppliers = require('./routes/supplier')
+const expenses = require('./routes/expenses')
+const buyers = require('./routes/buyers')
+const subCodes = require('./routes/subCodes')
 const PORT = 5000
 
 app.use(cors())
@@ -33,6 +36,9 @@ app.use('/attendant', attendant)
 app.use('/upload', upload)
 app.use('/damages', damages)
 app.use('/suppliers', suppliers)
+app.use('/expenses', expenses)
+app.use('/buyers', buyers)
+app.use('/subcodes', subCodes)
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`app running on http://0.0.0.0:${PORT}`);

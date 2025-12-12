@@ -39,6 +39,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true
     },
+    paid: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      },
+      payment_method: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      status: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue:"active"
+      },
   }, {
     sequelize,
     modelName: 'Sales',

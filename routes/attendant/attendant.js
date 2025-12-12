@@ -39,7 +39,6 @@ router.post('/register_attendant', async (req,res) => {
             }
         }
     } catch(error){
-        console.log(error)
         res.status(500).json({error: error})
     }
 })
@@ -91,7 +90,7 @@ router.get('/get_attendants', async (req, res) => {
 // get deleted attendants
 router.get('/get_deleted_attendants', async (req, res) => {
     const business_id = req.query.business_id
-    console.log('the bizi id is ',business_id)
+    console.log('business id is ',business_id)
     try {
         const curr = await Attendant.findAll({
             where: {
@@ -99,9 +98,9 @@ router.get('/get_deleted_attendants', async (req, res) => {
                 status: "disabled"
             }
         })
+        console.log(curr)
         res.json(curr);
     } catch (error) {
-        console.log(error)
         return res.status(500).json({ error: error.message });
     }
 });
@@ -121,7 +120,6 @@ router.post('/deactivate_attendant', async (req,res) => {
             return res.status(400).json({error: "attendant not found"})
         }
     }catch(error){
-        console.log('attendant error is ',error)
         res.status(500).json({error: error})
     }
 })
@@ -141,7 +139,6 @@ router.post('/restore_attendant', async (req,res) => {
             return res.status(400).json({error: "attendant not found"})
         }
     }catch(error){
-        console.log('attendant error is ',error)
         res.status(500).json({error: error})
     }
 })

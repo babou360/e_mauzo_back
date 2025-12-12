@@ -43,12 +43,14 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       category: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.JSONB,
+        allowNull: true,
+        defaultValue: null
       },
       sub_category: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        defaultValue: null
       },
       measurement: {
         type: DataTypes.JSON,
@@ -93,6 +95,7 @@ module.exports = (sequelize, DataTypes) => {
       min_stock: {
         type: DataTypes.INTEGER,
         allowNull: true,
+        defaultValue: 0
       },
       business_type: {
         type: DataTypes.STRING,

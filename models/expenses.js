@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class MS_CAT extends Model {
+  class Expenses extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,31 +13,27 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  MS_CAT.init({
-    swahili: {
+  Expenses.init({
+    name: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      english: {
+      amount: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+      },
+      category: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      value: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      examples_swahili: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
-      },
-      examples_english: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+      business_id: {
+        type: DataTypes.INTEGER,
         allowNull: false
       },
   }, {
     sequelize,
-    modelName: 'MS_CAT',
-    tableName: "ms_cats"
+    modelName: 'Expense',
+    tableName: 'expenses'
   });
-  return MS_CAT;
+  return Expenses;
 };

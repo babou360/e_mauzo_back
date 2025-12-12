@@ -9,17 +9,30 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      swahili: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+     english: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+     images: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
+        allowNull: true,
+        defaultValue: []
       },
       short_form: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: false
       },
       category: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
+      },
+      description: {
+        type: Sequelize.STRING,
+        allowNull: true
       },
       createdAt: {
         allowNull: false,

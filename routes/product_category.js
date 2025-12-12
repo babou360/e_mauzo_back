@@ -14,7 +14,6 @@ try{
         res.json(cat)
     }
 }catch (error){
-    console.log(error)
     res.status(500).json({error: error})
 }
 })

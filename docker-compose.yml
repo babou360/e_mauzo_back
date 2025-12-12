@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  mauzo_back:
+    container_name: mauzo_back
+    build: .
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: development
+      DB_USERNAME: neondb_owner
+      DB_PASSWORD: npg_aJ1uGtVCpX5d
+      DB_DATABASE: e_mauzo
+      DB_HOST: ep-empty-flower-a8oerdkq-pooler.eastus2.azure.neon.tech
+      DB_PORT: 5432
+      DB_DIALECT: postgres
+      DB_SSL: "true"

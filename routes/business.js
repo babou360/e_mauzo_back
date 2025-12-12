@@ -1,12 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const {Business} = require('../models/index')
+const {Business, Subscription} = require('../models/index')
 const authMiddleware = require('../utils/authMiddleware')
 const { Op } = require("sequelize");
 
 router.post("/register",authMiddleware, async (req,res) => {
     const {name,category,country,city,district,ward,street,type,latlong,phone,email} = req.body
     const user = req.user
+    console.log(req.body)
     try{
         if(name.trim()===""){
         return res.status(400).json({error: "Business name is required"})
@@ -21,6 +22,7 @@ router.post("/register",authMiddleware, async (req,res) => {
     }else{
         const bizi = await Business.findAll({
             where: {
+                status: 'active',
                 user_id:  {
                 [Op.contains]: [user.phone]
                 }
@@ -43,11 +45,16 @@ router.post("/register",authMiddleware, async (req,res) => {
             phone,
             email
         })
+        Subscription.create({
+            plan: 'basic',
+            userIds: [user.id],
+            businessId: business.id,
+            lastPaid: new Date()
+        })
         res.json(business)
         }
     }
     }catch(error){
-        console.log(error)
         return res.status(500).json({error: error})
     }
 })
@@ -90,7 +97,6 @@ router.get("/get_user_deleted_businesses",authMiddleware, async (req,res)=> {
 router.get("/get_selected_business",authMiddleware, async (req,res)=> {
     const business_id = req.query.business_id
     const user = req.user
-    console.log('business id is ',business_id)
     try{
         if(!business_id){
             return res.status(400).json({error: "business id is required"})
@@ -183,6 +189,7 @@ router.post("/deactivate_business",authMiddleware, async (req,res)=> {
 router.post("/restore_business",authMiddleware, async (req,res)=> {
     const {business_id} = req.body
     const user = req.user
+    console.log('restoring business with id ',business_id)
     try{
         if(!business_id){
             return res.status(400).json({error: "business id is required"})
@@ -196,11 +203,13 @@ router.post("/restore_business",authMiddleware, async (req,res)=> {
             }
         })
         if(bizi){
+            console.log(bizi)
             bizi.update({
                 status: 'active'
             })
             res.json(bizi)
         }else{
+            console.log('no business found')
             return res.status(400).json({error: "business not found"})
         }
         }

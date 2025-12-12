@@ -4,6 +4,10 @@ const {Damage,Product} = require('../models/index')
 const { uploadFiles } = require("./uploadService");
 const authMiddleware = require('../utils/authMiddleware');
 const {Op} = require('sequelize')
+const multer = require('multer');
+
+// === Multer setup for multipart form-data ===
+const upload = multer({ storage: multer.memoryStorage() });
 
 
 function getDateRange(duration, start_date, end_date) {
@@ -61,7 +65,7 @@ function getDateRange(duration, start_date, end_date) {
   return { start, end };
 }
 // register_damage
-router.post('/register_damage',authMiddleware, async (req,res) => {
+router.post('/register_damage',authMiddleware,upload.array('images'), async (req,res) => {
     const {product_id,images,quantity,reason,business_id} = req.body
     const user = req.user
     try{
@@ -69,7 +73,7 @@ router.post('/register_damage',authMiddleware, async (req,res) => {
             return res.status(400).json({error: "product id is required"})
         } else if(!business_id){
             return res.status(400).json({error: "business id is required"})
-        }else if (!images || images.length < 1){
+        }else if (!req.files || req.files.length < 1){
           return res.status(400).json({error: "images are required"})  
         }else if (!quantity){
           return res.status(400).json({error: "quantity is required"})  
@@ -82,12 +86,28 @@ router.post('/register_damage',authMiddleware, async (req,res) => {
             if(!product){
               return res.status(400).json({error: `product with id ${product_id} was not found`})  
             }else{
-             const uploadedFiles = await uploadFiles(images);
-             if(uploadedFiles.length>0){
+              let urls = [];
+              if (req.files && req.files.length > 0) {
+                // From multipart (Next.js web)
+                const buffers = req.files.map((f) => ({
+                  buffer: f.buffer,
+                  mimeType: f.mimetype,
+                  originalname: f.originalname,
+                }));
+                urls = await uploadFiles(buffers);
+              } else if (req.body.images) {
+                // From base64 (Flutter)
+                const base64Files = Array.isArray(req.body.images)
+                  ? req.body.images
+                  : [req.body.images];
+                urls = await uploadFiles(base64Files);
+              } else {
+                return res.status(400).json({ error: 'No images provided' });
+              }
                 const damages = await Damage.create({
                     product_id: product_id,
                     name: product.name,
-                    images: uploadedFiles,
+                    images: urls,
                     selling_price: product.selling_price,
                     buying_price: product.buying_price,
                     quantity,
@@ -95,13 +115,12 @@ router.post('/register_damage',authMiddleware, async (req,res) => {
                     attendant_id: user.phone,
                     business_id
                 })
+                console.log(damages)
                 res.json(damages)
-             }else{
-                return res.status(400).json({error: "an error occured while uploading files"})
              }
-            }
         }
     }catch(error){
+      console.log(error)
         res.status(500).json({error: "internal server error"})
     }
 })
@@ -154,7 +173,13 @@ router.get('/get_damages', authMiddleware, async (req, res) => {
       buying_price: item.buying_price,
       selling_price: item.selling_price,
     }));
+    const net = allDamages.reduce((total, product) => {
+    const quantity = Number(product.quantity) || 0;
+    const buyingPrice = Number(product.buying_price) || 0;
+    return total + quantity * buyingPrice;
+  }, 0);
     res.json({
+      net_price: net,
       rows: result,
       count: paginatedDamages.count,
       totalPages: Math.ceil(paginatedDamages.count / pageSize),

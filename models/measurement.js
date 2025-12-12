@@ -14,17 +14,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Measurement.init({
-     name: {
+     swahili: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+     english: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+     images: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true,
+        defaultValue: []
       },
       short_form: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
       },
       category: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: true
       },
   }, {
     sequelize,

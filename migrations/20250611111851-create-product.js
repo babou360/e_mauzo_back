@@ -26,7 +26,7 @@ module.exports = {
         allowNull: true
       },
       quantity: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false
       },
       buying_price: {
@@ -38,8 +38,8 @@ module.exports = {
         allowNull: false
       },
       category: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.JSONB,
+        allowNull: true
       },
       sub_category: {
         type: Sequelize.STRING,
@@ -88,6 +88,7 @@ module.exports = {
       min_stock: {
         type: Sequelize.INTEGER,
         allowNull: true,
+        default: 0
       },
       business_type: {
         type: Sequelize.STRING,

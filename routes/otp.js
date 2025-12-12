@@ -27,7 +27,6 @@ router.post("/send_otp", async (req, res) => {
     const response = await mailerSend.email.send(emailParams);
     res.status(200).json({ success: true, response });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: error.body || error.message || error });
   }
 });
@@ -35,7 +34,6 @@ router.post("/send_otp", async (req, res) => {
 router.post('/create_otp', async (req,res) => {
     try{
        createOtp().then((otp) => {
-       console.log("Your OTP is:", otp);
      });
     } catch(error){
         res.status(500).json({error: error})
@@ -72,6 +70,7 @@ router.post('/verify_otp', async (req,res) => {
           user.update({
             status: "active"
           })
+          res.json(user)
         }else{
           return res.status(400).json({error: `user with email ${email} does not exist`})
         }

@@ -8,7 +8,6 @@ const {Op} = require('sequelize')
 router.post('/create_supplier',authMiddleware, async(req,res) => {
     const {name,phone,country,city,district,ward,street,latlong,category,email,business_id} = req.body
     const user = req.user
-    console.log(req.body)
     try{
         if(!name || name.trim()===""){
             return res.status(400).json({error: "name cannot be empty"})
@@ -38,7 +37,6 @@ router.post('/create_supplier',authMiddleware, async(req,res) => {
             res.json(sapa)
         }
     } catch(error){
-        console.log(error)
         res.status(500).json({error: 'internal server error'})
     }
 })
@@ -90,7 +88,6 @@ router.get('/get_suppliers', async (req, res) => {
 // get deleted attendants
 router.get('/get_deleted_attendants', async (req, res) => {
     const business_id = req.query.business_id
-    console.log('the bizi id is ',business_id)
     try {
         const curr = await Attendant.findAll({
             where: {
@@ -100,7 +97,6 @@ router.get('/get_deleted_attendants', async (req, res) => {
         })
         res.json(curr);
     } catch (error) {
-        console.log(error)
         return res.status(500).json({ error: error.message });
     }
 });
@@ -120,7 +116,6 @@ router.post('/deactivate_attendant', async (req,res) => {
             return res.status(400).json({error: "attendant not found"})
         }
     }catch(error){
-        console.log('attendant error is ',error)
         res.status(500).json({error: error})
     }
 })
@@ -140,7 +135,6 @@ router.post('/restore_attendant', async (req,res) => {
             return res.status(400).json({error: "attendant not found"})
         }
     }catch(error){
-        console.log('attendant error is ',error)
         res.status(500).json({error: error})
     }
 })

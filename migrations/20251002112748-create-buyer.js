@@ -2,31 +2,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('ms_cats', {
+    await queryInterface.createTable('buyers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      swahili: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      english: {
+      phone: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      value: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      examples_swahili: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
-        allowNull: false
-      },
-      examples_english: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
+      business_id: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       createdAt: {
@@ -40,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('ms_cats');
+    await queryInterface.dropTable('buyers');
   }
 };

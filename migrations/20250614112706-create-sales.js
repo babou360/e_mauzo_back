@@ -33,6 +33,19 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true
       },
+      paid: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
+      },
+      payment_method: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        default:"active"
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
